@@ -67,6 +67,47 @@ export default function Atelier({ state, api }) {
             <p><b>À expertiser :</b> avis métier, juridique, DPO ou archives nécessaire.</p>
           </section>
           <section className="panel">
+            <section className="panel">
+  <h2>Contributions atelier</h2>
+
+  <div className="contribGrid">
+    <div>
+      <h3>Ajouter une remarque</h3>
+      <textarea
+        id="animateurRemark"
+        placeholder="Remarque, vigilance, point métier..."
+      />
+      <button
+        onClick={() => {
+          const value = document.getElementById("animateurRemark").value.trim();
+          if (!value) return;
+          api.addRemark(active.id, "Animateur", value);
+          document.getElementById("animateurRemark").value = "";
+        }}
+      >
+        Ajouter la remarque
+      </button>
+    </div>
+
+    <div>
+      <h3>Proposer un document</h3>
+      <input
+        id="animateurNewDoc"
+        placeholder="Nom du document à ajouter"
+      />
+      <button
+        onClick={() => {
+          const value = document.getElementById("animateurNewDoc").value.trim();
+          if (!value) return;
+          api.proposeDocument("Animateur", value);
+          document.getElementById("animateurNewDoc").value = "";
+        }}
+      >
+        Ajouter le document
+      </button>
+    </div>
+  </div>
+</section>
             <h2>Formalisation</h2>
             <textarea value={justification} onChange={e=>setJustification(e.target.value)} placeholder="Justification ou synthèse de l’atelier..." />
             <div className="buttonRow">
